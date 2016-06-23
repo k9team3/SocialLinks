@@ -42,7 +42,7 @@ class Facebook{
                 return $this->calls->exception("Wrong Input, only Numerical String allowed");
             }
             else {
-                error_log($value."what hte hell");
+
                 return $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
             }
         }
