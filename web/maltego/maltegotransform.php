@@ -262,7 +262,7 @@ class MaltegoTransformInput
 		}
 		try
 		{
-			$entXML = @new SimpleXMLElement($xml);
+			$entXML =$request;// @new SimpleXMLElement($xml);
 			$entities = array();
 			if (!empty($entXML))
 			{
