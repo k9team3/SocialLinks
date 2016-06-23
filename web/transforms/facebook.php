@@ -8,6 +8,7 @@
 
 namespace mpoellath\sociallinks\transforms;
 
+use Psr\Http\Message\ServerRequestInterface as Request;
 use mpoellath\sociallinks\maltego\MaltegoTransformInput;
 use mpoellath\sociallinks\config\Config;
 /*
@@ -94,12 +95,12 @@ class Facebook{
             }
         }
 
-    public function getMemberList($request,$response)
+    public function getMemberList(Request $request,$response)
     {
 
 
 
-        if ($this->input->getEntity($request->body)) {
+        if ($this->input->getEntity($request->getParsedBody())) {
 
             $value = $this->input->additionalFields;
             $id = $value['GroupID'];
