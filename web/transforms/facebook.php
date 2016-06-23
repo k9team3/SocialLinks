@@ -99,7 +99,7 @@ class Facebook{
 
         
 
-        if ($this->input->getEntity($request)) {
+        if ($this->input->getEntity()) {
 
             $value = $this->input->additionalFields;
             $id = $value['GroupID'];

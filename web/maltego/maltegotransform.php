@@ -218,13 +218,13 @@ class MaltegoTransformInput
 	/*getEntity
 		Parses entity input
 	*/
-	function getEntity($request)
+	function getEntity()
 	{
 		global $argc, $argv;
 		if ($argv && $argv[1]) {
 			return $this->populateEntityFromLocal();
 		} else {
-			return $this->populateEntityFromXML($request);
+			return $this->populateEntityFromXML();
 		}
 	}
 
@@ -252,10 +252,10 @@ class MaltegoTransformInput
 	/* Populate entity from XML input (e.g. via TDS)
 	 *
 	 */
-	private function populateEntityFromXML($request)
+	private function populateEntityFromXML()
 	{
 		$xml = "No XML";
-		$xmlPost = file_get_contents($request);
+		$xmlPost = file_get_contents();
 		if($xmlPost)
 		{
 			$xml = $xmlPost;
