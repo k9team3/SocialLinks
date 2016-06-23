@@ -31,24 +31,25 @@ class Facebook{
 
     public function getGroup(Request $request,$response){
 
-
-        if($this->input->getEntity($request->getBody()->getContents())) {
-
-
-            $value = $this->input->transformFields['GroupPopUp'];
-            if(!ctype_digit($value)) {
-
-                return $this->calls->exception("Wrong Input, only Numerical String allowed");
-            }
-            else {
-
-                return $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
-            }
-        }
-        else
-        {
-            return $this->calls->exception("NO correct Input");
-        }
+        return $request->getBody()->getContents();
+//
+//        if($this->input->getEntity($request->getBody()->getContents())) {
+//
+//
+//            $value = $this->input->transformFields['GroupPopUp'];
+//            if(!ctype_digit($value)) {
+//
+//                return $this->calls->exception("Wrong Input, only Numerical String allowed");
+//            }
+//            else {
+//
+//                return $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
+//            }
+//        }
+//        else
+//        {
+//            return $this->calls->exception("NO correct Input");
+//        }
     }
 
 
