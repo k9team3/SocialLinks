@@ -28,7 +28,7 @@ class Facebook{
 
     }
 
-    public function getGroup(){
+    public function getGroup($request,$response){
 
         if($this->input->getEntity()) {
 
@@ -36,36 +36,36 @@ class Facebook{
             $value = $this->input->transformFields['GroupPopUp'];
             if(!ctype_digit($value)) {
 
-                echo $this->calls->exception("Wrong Input, only Numerical String allowed");
+                return $this->calls->exception("Wrong Input, only Numerical String allowed");
             }
             else {
 
-                echo $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
+                return $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
             }
         }
         else
         {
-            echo $this->calls->exception("NO correct Input");
+            return $this->calls->exception("NO correct Input");
         }
     }
 
 
-    public function getEmailGroup(){
+    public function getEmailGroup($request,$response){
 
         if($this->input->getEntity()) {
 
             $value =$this->input->additionalFields;
             $id = $value['GroupID'];
 
-            echo  $this->calls->femail('https://graph.facebook.com/v2.6/'.$id.'?fields=email&'.$this->config->getAccessToken());
+            return  $this->calls->femail('https://graph.facebook.com/v2.6/'.$id.'?fields=email&'.$this->config->getAccessToken());
         }
         else {
-            echo $this->$this->calls->exception("NO correct Input");
+            return $this->$this->calls->exception("NO correct Input");
 
         }
     }
 
-    public function getFeed()
+    public function getFeed($request,$response)
     {
 
 
@@ -79,25 +79,25 @@ class Facebook{
 
             if (!ctype_digit($startpoint) || !ctype_digit($limit)) {
 
-                echo $this->calls->exception("Wrong Input, only Numerical String allowed");
+                return $this->calls->exception("Wrong Input, only Numerical String allowed");
 
             } else {
 
 
-                    echo $this->calls->ffeed('https://graph.facebook.com/v2.6/' . $id . '/feed?fields=from,message,created_time&limit='.$limit.'&offset='.$startpoint.'&' . $this->config->getAccessToken());
+                    return $this->calls->ffeed('https://graph.facebook.com/v2.6/' . $id . '/feed?fields=from,message,created_time&limit='.$limit.'&offset='.$startpoint.'&' . $this->config->getAccessToken());
 
                 }
              }
             else
             {
-                echo $this->calls->exception("NO correct Input");
+                return $this->calls->exception("NO correct Input");
             }
         }
 
-    public function getMemberList()
+    public function getMemberList($request,$response)
     {
 
-
+        
 
         if ($this->input->getEntity()) {
 
@@ -108,17 +108,17 @@ class Facebook{
 
             if(!ctype_digit($startpoint) || !ctype_digit($limit))
             {
-                echo $this->calls->exception("Wrong Input, only Numerical Strings allowed");
+                return $this->calls->exception("Wrong Input, only Numerical Strings allowed");
 
             }else {
 
 
-                echo $this->calls->fmember("https://graph.facebook.com/v2.6/" . $id . "/members?fields=last_name,first_name,picture&limit=" . $limit . "&offset=" . $startpoint . "&" . $this->config->getAccessToken());
+               return $this->calls->fmember("https://graph.facebook.com/v2.6/" . $id . "/members?fields=last_name,first_name,picture&limit=" . $limit . "&offset=" . $startpoint . "&" . $this->config->getAccessToken());
             }
 
         } else {
 
-            echo $this->calls->exception("NO input entity found");
+            return $this->calls->exception("NO input entity found");
         }
 
 

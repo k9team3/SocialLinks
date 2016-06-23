@@ -26,7 +26,7 @@ class Google{
     }
 
 
-    public function findPerson(){
+    public function findPerson($request,$response){
 
         if($this->input->getEntity()) {
 
@@ -34,7 +34,7 @@ class Google{
             if(ctype_digit($value)){
 
                 //do the find person
-                echo $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/".$value."?key=".$this->config->getGooglekey());
+                return $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/".$value."?key=".$this->config->getGooglekey());
 
             }
             else{
@@ -55,52 +55,52 @@ class Google{
                     $output .= "</MaltegoTransformResponseMessage>\n";
                     $output .= "</MaltegoMessage>\n";
 
-                    echo $output;
+                    return $output;
                 }
 
             }
             else{
 
-              echo  $this->calls->exception("NO Valid Input");
+              return  $this->calls->exception("NO Valid Input");
             }
         }
 
-    public function getInformation(){
+    public function getInformation($request,$response){
 
             if ($this->input->getEntity()) {
 
                 $value = $this->input->additionalFields;
                 $id = $value['id'];
 
-                echo $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/" . $id . "?key=" . $this->config->getGooglekey());
+                return $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/" . $id . "?key=" . $this->config->getGooglekey());
 
             }
             else{
 
-                echo  $this->exception("NO Valid Input");
+                return  $this->calls->exception("NO Valid Input");
             }
         }
 
-    public function getOrganizations(){
+    public function getOrganizations($request,$response){
 
             if ($this->input->getEntity()) {
 
                 $value = $this->input->additionalFields;
                 $id = $value['id'];
 
-                echo $this->calls->gorganizations("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
+                return $this->calls->gorganizations("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
 
 
             }else{
 
-                echo $this->calls->exception("NO Valid Input");
+                return $this->calls->exception("NO Valid Input");
 
             }
 
 
         }
 
-    public function getPlaces(){
+    public function getPlaces($request,$response){
 
             $input = new MaltegoTransformInput();
 
@@ -109,11 +109,11 @@ class Google{
                 $value = $input->additionalFields;
                 $id = $value['id'];
 
-                echo $this->calls->gplaces("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
+                return $this->calls->gplaces("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
 
 
             }else{
-                echo $this->calls->exception("NO Valid Input");
+                return $this->calls->exception("NO Valid Input");
             }
         }
 
