@@ -99,28 +99,28 @@ class Facebook{
 
         
 
-        if ($this->input->getEntity()) {
-
-            $value = $this->input->additionalFields;
-            $id = $value['GroupID'];
-            $startpoint = $this->input->transformFields['MemberStartpoint'];
-            $limit = $this->input->transformFields['MemberLimit'];
-
-            if(!ctype_digit($startpoint) || !ctype_digit($limit))
-            {
-                return $this->calls->exception("Wrong Input, only Numerical Strings allowed");
-
-            }else {
-
-
-               return $this->calls->fmember("https://graph.facebook.com/v2.6/" . $id . "/members?fields=last_name,first_name,picture&limit=" . $limit . "&offset=" . $startpoint . "&" . $this->config->getAccessToken());
-            }
-
-        } else {
+//        if ($this->input->getEntity()) {
+//
+//            $value = $this->input->additionalFields;
+//            $id = $value['GroupID'];
+//            $startpoint = $this->input->transformFields['MemberStartpoint'];
+//            $limit = $this->input->transformFields['MemberLimit'];
+//
+//            if(!ctype_digit($startpoint) || !ctype_digit($limit))
+//            {
+//                return $this->calls->exception("Wrong Input, only Numerical Strings allowed");
+//
+//            }else {
+//
+//
+//               return $this->calls->fmember("https://graph.facebook.com/v2.6/" . $id . "/members?fields=last_name,first_name,picture&limit=" . $limit . "&offset=" . $startpoint . "&" . $this->config->getAccessToken());
+//            }
+//
+//        } else {
 
             return $this->calls->exception("NO input entity found");
-        }
-
+//        }
+//
 
     }
 
