@@ -1,10 +1,12 @@
 <?php
 
+//namespace mpoellath\sociallinks;
 
+use Slim\App;
 require_once('../vendor/autoload.php');
 
 
-use Slim\App;
+
 
 $app = new App();
 
