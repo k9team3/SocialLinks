@@ -252,7 +252,7 @@ class MaltegoTransformInput
 	/* Populate entity from XML input (e.g. via TDS)
 	 *
 	 */
-	private function populateEntityFromXML($request)
+	private function populateEntityFromXML($entXML)
 	{
 //		$xml = "No XML";
 //		$xmlPost = $request;//file_get_contents('php://input');
@@ -262,7 +262,7 @@ class MaltegoTransformInput
 //		}
 //		try
 //		{
-			$entXML = $request;//@new SimpleXMLElement($xml);
+			//$entXML = $reques;//@new SimpleXMLElement($xml);
 			$entities = array();
 			if (!empty($entXML))
 			{
