@@ -27,7 +27,7 @@ class Calls{
 
 
         $result = $this->request->response($url);
-        error_log(var_dump($result)."facebook works?");
+        error_log($url);
         if ($result->error != NULL) {
 
             return $this->exception("" . $result->error->message . " + " . $result->error->type);
