@@ -1,0 +1,21 @@
+{
+    "name": "michael/sociallinks",
+    "description": "A TDS for sociallinks",
+    "authors": [
+        {
+            "name": "Michael Pöllath",
+            "email": "mipoe@live.de"
+        }
+    ],
+    "require": {
+	"php" : "^5.6",
+
+    "ext-sqlite3": "*",
+        "klein/klein": "^2.1",
+        "facebook/php-sdk-v4": "^5.2",
+        "slim/slim": "^3.0"
+
+
+	
+	}
+}

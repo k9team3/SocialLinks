@@ -1,0 +1,25 @@
+A Simple Transform to find all Members in a Facebook Group.
+
+You need a GroupID ( Example: 381517268582459) to search for the Members. Maltego Commercial will only return 12 Entities , so dont' worry.
+
+Please add your own Facebook App - Secret and App-ID in /config/config.php !
+
+
+This TDS is running under Heroku using following links:
+
+https://salty-shore-28906.herokuapp.com/facebook/groups :: Link to find a Group
+https://salty-shore-28906.herokuapp.com/facebook/memberlist ::Link to find all Members of Group
+
+The Seed to import to your Maltego:
+
+http://cetas.paterva.com/TDS/runner/showseed/Gt8mjelE1HdY
+
+
+Debug:
+
+If you want to see the xml code you have to remove the if/else for InputMaltegoTransform in GroupMembers.php
+And Activate the commented Debug Only code.
+
+
+
+
