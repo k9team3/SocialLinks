@@ -254,15 +254,15 @@ class MaltegoTransformInput
 	 */
 	private function populateEntityFromXML($request)
 	{
-		$xml = "No XML";
-		$xmlPost = $request;//file_get_contents('php://input');
-		if($xmlPost)
-		{
-			$xml = $xmlPost;
-		}
-		try
-		{
-			$entXML = @new SimpleXMLElement($xml);
+//		$xml = "No XML";
+//		$xmlPost = $request;//file_get_contents('php://input');
+//		if($xmlPost)
+//		{
+//			$xml = $xmlPost;
+//		}
+//		try
+//		{
+			$entXML = $request;//@new SimpleXMLElement($xml);
 			$entities = array();
 			if (!empty($entXML))
 			{
@@ -296,13 +296,14 @@ class MaltegoTransformInput
 				$this->slider = (string)$entXML->MaltegoTransformRequestMessage->Limits["HardLimit"];
 				return true;
 			}
-
-		}
-		catch (Exception $e)
-		{
-			return false;
-		}
 		return false;
+
+//		}
+//		catch (Exception $e)
+//		{
+//			return false;
+//		}
+//		return false;
 
 	}
 }

@@ -33,7 +33,7 @@ class Facebook{
 
 
 
-        if($this->input->getEntity($request->getBody()->getContents())) {
+        if($this->input->getEntity($request->getParsedBody())) {
 
 
             $value = $this->input->transformFields['GroupPopUp'];
