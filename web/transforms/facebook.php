@@ -29,9 +29,9 @@ class Facebook{
 
     }
 
-    public function getGroup($request,$response){
+    public function getGroup(Request $request,$response){
 
-        if($this->input->getEntity()) {
+        if($this->input->getEntity($request->getParsedBody())) {
 
 
             $value = $this->input->transformFields['GroupPopUp'];
@@ -51,9 +51,9 @@ class Facebook{
     }
 
 
-    public function getEmailGroup($request,$response){
+    public function getEmailGroup(Request $request,$response){
 
-        if($this->input->getEntity()) {
+        if($this->input->getEntity($request->getParsedBody())) {
 
             $value =$this->input->additionalFields;
             $id = $value['GroupID'];
@@ -66,11 +66,11 @@ class Facebook{
         }
     }
 
-    public function getFeed($request,$response)
+    public function getFeed(Request $request,$response)
     {
 
 
-        if ($this->input->getEntity()) {
+        if ($this->input->getEntity($request->getParsedBody())) {
 
             $value = $this->input->additionalFields;
             $id = $value['GroupID'];
