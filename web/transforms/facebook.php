@@ -31,11 +31,11 @@ class Facebook{
 
     public function getGroup(Request $request,$response){
 
-
+        error_log($request->getBody()->getContents());
         if($this->input->getEntity($request->getParsedBody())) {
 
-            error_log(var_dump($request->getParsedBody()));
-            error_log(var_dump($request->getBody()));
+            error_log(var_dump($request->getParsedBody()."hallooo"));
+            error_log(var_dump($request->getBody()."whaat"));
             $value = $this->input->transformFields['GroupPopUp'];
             if(!ctype_digit($value)) {
 
