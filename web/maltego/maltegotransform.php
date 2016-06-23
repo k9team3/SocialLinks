@@ -224,7 +224,7 @@ class MaltegoTransformInput
 		if ($argv && $argv[1]) {
 			return $this->populateEntityFromLocal();
 		} else {
-			return $this->populateEntityFromXML();
+			return $this->populateEntityFromXML($request);
 		}
 	}
 
