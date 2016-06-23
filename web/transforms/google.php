@@ -5,6 +5,12 @@
  * Date: 22.06.2016
  * Time: 13:58
  */
+namespace mpoellath\sociallinks\transforms;
+
+use mpoellath\sociallinks\maltego\MaltegoTransformInput;
+use mpoellath\sociallinks\config\Config;
+
+
 class Google{
 
     private $calls;

@@ -1,6 +1,6 @@
 <?php
 
-//namespace mpoellath\sociallinks;
+namespace mpoellath\sociallinks;
 
 use Slim\App;
 require_once('../vendor/autoload.php');

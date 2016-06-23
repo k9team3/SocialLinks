@@ -1,5 +1,7 @@
 <?php
 
+namespace mpoellath\sociallinks\maltego;
+
 class MaltegoEntity
 {
 	var $value = "";

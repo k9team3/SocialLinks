@@ -20,35 +20,35 @@ $container = $app->getContainer();
 
 $container['entity'] = function($c){
 
-    return new MaltegoEntity();
+    return new \mpoellath\sociallinks\maltego\MaltegoEntity();
 };
 
 $container['transform'] = function($c){
 
-    return new MaltegoTransform();
+    return new \mpoellath\sociallinks\maltego\MaltegoTransform();
 };
 $container['input'] = function($c){
 
-    return new MaltegoTransformInput();
+    return new \mpoellath\sociallinks\maltego\MaltegoTransformInput();
 };
 $container['request'] = function($c){
 
-    return new Request();
+    return new \mpoellath\sociallinks\config\Request();
 };
 $container['config'] = function($c){
 
-    return new Config();
+    return new  \mpoellath\sociallinks\config\Config();
 };
 $container['calls'] = function($c){
 
-    return new Calls($c['entity'],$c['transform'],$c['request']);
+    return new  \mpoellath\sociallinks\transforms\Calls($c['entity'],$c['transform'],$c['request']);
 };
 $container['facebook'] = function($c){
 
-    return new Facebook($c['calls'],$c['input'],$c['config']);
+    return new \mpoellath\sociallinks\transforms\Facebook($c['calls'],$c['input'],$c['config']);
 };
 $container['google'] = function($c){
 
-    return new Google($c['calls'],$c['input'],$c['config']);
+    return new \mpoellath\sociallinks\transforms\Google($c['calls'],$c['input'],$c['config']);
 };
 

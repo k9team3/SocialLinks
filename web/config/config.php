@@ -6,6 +6,7 @@
  * Time: 09:21
  */
 
+namespace mpoellath\sociallinks\config;
 /*
  * Contains the Facebook access token
  */

@@ -5,6 +5,10 @@
  * Date: 23.06.2016
  * Time: 16:12
  */
+namespace mpoellath\sociallinks\transforms;
+use mpoellath\sociallinks\maltego\MaltegoEntity;
+use mpoellath\sociallinks\maltego\MaltegoTransform;
+use mpoellath\sociallinks\config\Request;
 
 class Calls{
 

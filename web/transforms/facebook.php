@@ -5,6 +5,11 @@
  * Date: 08.06.2016
  * Time: 13:46
  */
+
+namespace mpoellath\sociallinks\transforms;
+
+use mpoellath\sociallinks\maltego\MaltegoTransformInput;
+use mpoellath\sociallinks\config\Config;
 /*
  *
  * Gets a Group from Input

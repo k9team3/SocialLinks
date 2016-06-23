@@ -5,6 +5,8 @@
  * Date: 08.06.2016
  * Time: 13:49
  */
+
+namespace mpoellath\sociallinks\config;
 /*
  * Sends a Request to Facebook Api and returns the json
  */
