@@ -9,6 +9,7 @@ namespace mpoellath\sociallinks\transforms;
 
 use mpoellath\sociallinks\maltego\MaltegoTransformInput;
 use mpoellath\sociallinks\config\Config;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 
 class Google{
@@ -26,9 +27,9 @@ class Google{
     }
 
 
-    public function findPerson($request,$response){
+    public function findPerson(Request $request,$response){
 
-        if($this->input->getEntity()) {
+        if($this->input->getEntity($request->getParsedBody())) {
 
             $value = $this->input->transformFields['GooglePoPUp'];
             if(ctype_digit($value)){
@@ -65,9 +66,9 @@ class Google{
             }
         }
 
-    public function getInformation($request,$response){
+    public function getInformation(Request $request,$response){
 
-            if ($this->input->getEntity()) {
+            if ($this->input->getEntity($request->getParsedBody())) {
 
                 $value = $this->input->additionalFields;
                 $id = $value['id'];
@@ -81,9 +82,9 @@ class Google{
             }
         }
 
-    public function getOrganizations($request,$response){
+    public function getOrganizations(Request $request,$response){
 
-            if ($this->input->getEntity()) {
+            if ($this->input->getEntity($request->getParsedBody())) {
 
                 $value = $this->input->additionalFields;
                 $id = $value['id'];
@@ -100,11 +101,11 @@ class Google{
 
         }
 
-    public function getPlaces($request,$response){
+    public function getPlaces(Request $request,$response){
 
             $input = new MaltegoTransformInput();
 
-            if ($input->getEntity()) {
+            if ($input->getEntity($request->getParsedBody())) {
 
                 $value = $input->additionalFields;
                 $id = $value['id'];

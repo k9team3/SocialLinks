@@ -27,6 +27,7 @@ class Calls{
 
 
         $result = $this->request->response($url);
+        $output= "";
 
         if ($result->error != NULL) {
 
@@ -42,16 +43,16 @@ class Calls{
             $this->entity->addAdditionalFields("GroupID", "Group ID", "false", $result->id);
             $this->entity->addAdditionalFields("privacy", "Group Privacy", false, $result->privacy);
             $this->entity->addAdditionalFields("update", "Update Time", false, $result->updated_time);
-            $this->transform->addEntitytoMessage($this->entity);
+            $output .= $this->entity->returnEntity();
 
-
-            return $this->transform->returnOutput();
+            return $this->output($output);
         }
     }
 
     public function femail($url){
 
         $result = $this->request->response($url);
+        $output ="";
         if ($result->error != NULL) {
 
             return $this->exception("" . $result->error->message . " + " . $result->error->type);
@@ -60,16 +61,16 @@ class Calls{
 
 
             $this->entity->MaltegoEntity("maltego.EmailAddress", $result->email);
-            $this->transform->addEntitytoMessage($this->entity);
+            $output .= $this->entity->returnEntity();
 
-            return $this->transform->returnOutput();
+            return $this->output($output);
         }
     }
 
     public function ffeed($url){
 
         $result = $this->request->response($url);
-
+        $output = "";
         if ($result->error != NULL) {
 
             return $this->exception("" . $result->error->message . " + " . $result->error->type);
@@ -83,16 +84,17 @@ class Calls{
                     href=\"https://www.facebook.com/" . $item->id . "\">here</a> to get more Information about Feed. Message::".$item->message);
                 $this->entity->addAdditionalFields("ID","ID",false,$item->from->id);
                 $this->entity->addAdditionalFields("createdtime","Created Time",false,$item->created_time);
-                $this->transform->addEntitytoMessage($this->entity);
+
+                $output.=$this->entity->returnEntity();
             }
-            return $this->transform->returnOutput();
+            return $this->output($output);
         }
     }
 
     public function fmember($url)
     {
         $data = $this->request->response($url);
-        $string="";
+        $output="";
 
         if ($data->error != NULL) {
 
@@ -112,23 +114,12 @@ class Calls{
                 $this->entity->addAdditionalFields("person.firstnames", "First Names", false, $item->first_name);
                 $this->entity->addAdditionalFields("person.lastname", "Surname", false, $item->last_name);
                 $this->entity->addAdditionalFields("ID", "ID", false, $item->id);
-                $string.=$this->entity->returnEntity();
+                $output.=$this->entity->returnEntity();
 
             }
-            $output = "<MaltegoMessage>\n";
-            $output .= "<MaltegoTransformResponseMessage>\n";
-            $output .="<Entities>\n";
-            $output.=$string;
-            $output .="</Entities>\n";
 
-            $output .="<UIMessages>\n";
+            return $this->output($output);
 
-            $output .="</UIMessages>\n";
-
-            $output .= "</MaltegoTransformResponseMessage>\n";
-            $output .= "</MaltegoMessage>\n";
-            return $output;
-            
         }
     }
 
@@ -175,6 +166,7 @@ class Calls{
     public function gpersonById($url){
 
         $result = $this->request->response($url);
+        $output = "";
 
         if($result->error != NULL){
             return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
@@ -193,14 +185,16 @@ class Calls{
             $this->entity->addAdditionalFields("displayname","Display Name",false,$result->displayName);
             $this->entity->addAdditionalFields("occupation","Occupation",false,$result->occupation);
             $this->entity->addAdditionalFields("circledByCount","Circled",false,intval($result->circledByCount));
-            $this->transform->addEntitytoMessage($this->entity);
-            return $this->transform->returnOutput();
+            $output .= $this->entity->returnEntity();
+
+            return $this->output($output);
         }
     }
 
     public function gorganizations($url){
 
         $result = $this->request->response($url);
+        $output="";
 
         if($result->error != NULL){
             return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
@@ -223,12 +217,14 @@ class Calls{
 
                 $this->entity->addAdditionalFields("department","Department",false,$item->department);
                 $this->entity->addAdditionalFields("location","Location",false,$item->location);
-                $this->transform->addEntitytoMessage($this->entity);
+                $output .= $this->entity->returnEntity();
 
 
 
             }
-            return $this->transform->returnOutput();
+
+
+            return $this->output($output);
 
         }
     }
@@ -238,6 +234,7 @@ class Calls{
 
 
             $result = $this->request->response($url);
+            $output ="";
 
             if($result->error != NULL){
                 return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
@@ -255,9 +252,10 @@ class Calls{
                         $this->entity->addAdditionalFields("primary","Primary",false,true);
                     }
 
-                    $this->transform->addEntitytoMessages($this->entity);
+                    $output .= $this->entity->returnEntity();
                 }
-                return $this->transform->returnOutput();
+
+                return $this->output($output);
 
             }
     }
@@ -270,7 +268,22 @@ class Calls{
     }
 
 
+    private function output($entities){
+        $output="";
+        $output = "<MaltegoMessage>\n";
+        $output .= "<MaltegoTransformResponseMessage>\n";
+        $output .="<Entities>\n";
+        $output.=   $entities;
+        $output .="</Entities>\n";
 
+        $output .="<UIMessages>\n";
+
+        $output .="</UIMessages>\n";
+
+        $output .= "</MaltegoTransformResponseMessage>\n";
+        $output .= "</MaltegoMessage>\n";
+        return $output;
+    }
 
 
 
