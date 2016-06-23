@@ -62,7 +62,7 @@ class Facebook{
             return  $this->calls->femail('https://graph.facebook.com/v2.6/'.$id.'?fields=email&'.$this->config->getAccessToken());
         }
         else {
-            return $this->$this->calls->exception("NO correct Input");
+            return $this->calls->exception("NO correct Input");
 
         }
     }
