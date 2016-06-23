@@ -31,6 +31,7 @@ class Facebook{
 
     public function getGroup(Request $request,$response){
 
+        return $request->getParsedBody();
         if($this->input->getEntity($request->getParsedBody())) {
 
 

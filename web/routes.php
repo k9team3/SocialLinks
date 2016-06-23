@@ -8,7 +8,7 @@
 
 //facebook routes
 $app->post('/facebook/memberlist','facebook:getMemberList');
-$app->post('/facebook/group','facebook:getGroup');
+$app->get('/facebook/group','facebook:getGroup');
 $app->post('/facebook/group/email','facebook:getEmailGroup');
 $app->post('/facebook/group/feed','facebook:getFeed');
 
