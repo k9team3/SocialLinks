@@ -10,7 +10,7 @@ namespace mpoellath\sociallinks\config;
 /*
  * Sends a Request to Facebook Api and returns the json
  */
-class Request{
+class Send{
 
 
 

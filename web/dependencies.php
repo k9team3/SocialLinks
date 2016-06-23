@@ -8,7 +8,7 @@
 
 
 include ('./config/config.php');
-include ('./config/request.php');
+include('./config/send.php');
 include('./transforms/calls.php');
 include('./transforms/facebook.php');
 include('./transforms/google.php');
@@ -31,9 +31,9 @@ $container['input'] = function($c){
 
     return new \mpoellath\sociallinks\maltego\MaltegoTransformInput();
 };
-$container['request'] = function($c){
+$container['send'] = function($c){
 
-    return new \mpoellath\sociallinks\config\Request();
+    return new \mpoellath\sociallinks\config\Send();
 };
 $container['config'] = function($c){
 
@@ -41,7 +41,7 @@ $container['config'] = function($c){
 };
 $container['calls'] = function($c){
 
-    return new  \mpoellath\sociallinks\transforms\Calls($c['entity'],$c['transform'],$c['request']);
+    return new  \mpoellath\sociallinks\transforms\Calls($c['entity'],$c['transform'],$c['send']);
 };
 $container['facebook'] = function($c){
 

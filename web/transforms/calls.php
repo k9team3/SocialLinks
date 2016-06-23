@@ -8,7 +8,7 @@
 namespace mpoellath\sociallinks\transforms;
 use mpoellath\sociallinks\maltego\MaltegoEntity;
 use mpoellath\sociallinks\maltego\MaltegoTransform;
-use mpoellath\sociallinks\config\Request;
+use mpoellath\sociallinks\config\Send;
 
 class Calls{
 
@@ -16,7 +16,7 @@ class Calls{
     private $transform;
     private $request;
 
-    public function __construct(MaltegoEntity $entity ,MaltegoTransform $transform,Request $request){
+    public function __construct(MaltegoEntity $entity ,MaltegoTransform $transform,Send $request){
 
         $this->entity = $entity;
         $this->transform = $transform;
@@ -24,7 +24,6 @@ class Calls{
     }
 
     public function fgroup($url){
-        $this->request->response($url);
 
 
         $result = $this->request->response($url);
