@@ -31,7 +31,7 @@ class Facebook{
 
     public function getGroup(Request $request,$response){
 
-        error_log($request->getBody()->getContents());
+        error_log($request->getParsedBody());
         return "xml?";
 //
 //        if($this->input->getEntity($request->getBody()->getContents())) {
