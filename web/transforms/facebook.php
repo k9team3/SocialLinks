@@ -34,8 +34,8 @@ class Facebook{
 
         if($this->input->getEntity($request->getParsedBody())) {
 
-            error_log($request->getParsedBody());
-            error_log($request->getBody());
+            error_log(var_dump($request->getParsedBody()));
+            error_log(var_dump($request->getBody()));
             $value = $this->input->transformFields['GroupPopUp'];
             if(!ctype_digit($value)) {
 
