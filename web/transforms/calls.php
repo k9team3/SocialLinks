@@ -27,7 +27,7 @@ class Calls{
 
 
         $result = $this->request->response($url);
-        error_log($url);
+
         if ($result->error != NULL) {
 
             return $this->exception("" . $result->error->message . " + " . $result->error->type);
@@ -44,7 +44,7 @@ class Calls{
             $this->entity->addAdditionalFields("update", "Update Time", false, $result->updated_time);
             $this->transform->addEntitytoMessage($this->entity);
 
-            error_log($this->transform->returnOutput()."does this work?");
+
             return $this->transform->returnOutput();
         }
     }
