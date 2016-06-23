@@ -218,7 +218,7 @@ class MaltegoTransformInput
 	/*getEntity
 		Parses entity input
 	*/
-	function getEntity()
+	function getEntity($request)
 	{
 		global $argc, $argv;
 		if ($argv && $argv[1]) {
@@ -252,10 +252,10 @@ class MaltegoTransformInput
 	/* Populate entity from XML input (e.g. via TDS)
 	 *
 	 */
-	private function populateEntityFromXML()
+	private function populateEntityFromXML($request)
 	{
 		$xml = "No XML";
-		$xmlPost = file_get_contents('php://input');
+		$xmlPost = $request;//file_get_contents('php://input');
 		if($xmlPost)
 		{
 			$xml = $xmlPost;
