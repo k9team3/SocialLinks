@@ -38,7 +38,7 @@ class Facebook{
 
             $value = $this->input->transformFields['GroupPopUp'];
             if(!ctype_digit($value)) {
-
+                error_log($value."what hte hell");
                 return $this->calls->exception("Wrong Input, only Numerical String allowed");
             }
             else {
