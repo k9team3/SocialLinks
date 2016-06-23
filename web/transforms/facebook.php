@@ -32,7 +32,7 @@ class Facebook{
     public function getGroup(Request $request,$response){
 
 
-
+        //this works!
         if($this->input->getEntity($request->getParsedBody())) {
 
 
@@ -43,7 +43,7 @@ class Facebook{
             }
             else {
 
-                return $this->calls->fgroup("https://graph.facebook.com/v2.6/' . $value . '?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
+                return $this->calls->fgroup("https://graph.facebook.com/v2.6/" . $value . "?fields=cover,description,name,privacy,updated_time&" . $this->config->getAccessToken());
             }
         }
         else
