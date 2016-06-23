@@ -255,7 +255,7 @@ class MaltegoTransformInput
 	private function populateEntityFromXML()
 	{
 		$xml = "No XML";
-		$xmlPost = file_get_contents();
+		$xmlPost = file_get_contents('php://input');
 		if($xmlPost)
 		{
 			$xml = $xmlPost;
