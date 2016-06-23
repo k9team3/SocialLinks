@@ -92,6 +92,7 @@ class Calls{
     public function fmember($url)
     {
         $data = $this->request->response($url);
+        $string="";
 
         if ($data->error != NULL) {
 
@@ -111,9 +112,23 @@ class Calls{
                 $this->entity->addAdditionalFields("person.firstnames", "First Names", false, $item->first_name);
                 $this->entity->addAdditionalFields("person.lastname", "Surname", false, $item->last_name);
                 $this->entity->addAdditionalFields("ID", "ID", false, $item->id);
-                $this->transform->addEntitytoMessage( $this->entity);
+                $string.=$this->entity->returnEntity();
+
             }
-            return $this->transform->returnOutput();
+            $output = "<MaltegoMessage>\n";
+            $output .= "<MaltegoTransformResponseMessage>\n";
+            $output .="<Entities>\n";
+            $output.=$string;
+            $output .="</Entities>\n";
+
+            $output .="<UIMessages>\n";
+
+            $output .="</UIMessages>\n";
+
+            $output .= "</MaltegoTransformResponseMessage>\n";
+            $output .= "</MaltegoMessage>\n";
+            return $output;
+            
         }
     }
 
