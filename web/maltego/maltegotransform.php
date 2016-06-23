@@ -221,11 +221,11 @@ class MaltegoTransformInput
 	function getEntity($request)
 	{
 		global $argc, $argv;
-		if ($argv && $argv[1]) {
-			return $this->populateEntityFromLocal();
-		} else {
+//		if ($argv && $argv[1]) {
+//			return $this->populateEntityFromLocal();
+//		} else {
 			return $this->populateEntityFromXML($request);
-		}
+//		}
 	}
 
 	/* Populate entity from Local (command line args)
