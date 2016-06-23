@@ -96,10 +96,10 @@ class Facebook{
 
     public function getMemberList($request,$response)
     {
-        return "hello";
+
         
 
-        if ($this->input->getEntity()) {
+        if ($this->input->getEntity($request)) {
 
             $value = $this->input->additionalFields;
             $id = $value['GroupID'];
