@@ -1,4 +1,4 @@
-SOCIALLINKS
+SocialLinks
 ===
 
 **A Simple Transform to find all Members in a Facebook Group or  a Google+ Person using the Maltego Software.**
