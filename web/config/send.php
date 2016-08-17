@@ -13,8 +13,10 @@ namespace mpoellath\sociallinks\config;
 class Send{
 
 
-
-
+    /**
+     * @param $link
+     * @return mixed
+     */
     public function response($link){
 
         $curl = curl_init();
@@ -27,3 +29,4 @@ class Send{
     }
 
 }
+

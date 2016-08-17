@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7d4c5f50d5baf1b7ee8b00ccd90d68a8",
-    "content-hash": "4db4a38be6f778dba5c4027a47e9ab16",
+    "hash": "71e4d867507ecaa3cb168f41be781f6d",
+    "content-hash": "2bbdececb5fafcd72f9947efc23f4bdd",
     "packages": [
         {
             "name": "container-interop/container-interop",
@@ -33,119 +33,6 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30 15:22:37"
-        },
-        {
-            "name": "facebook/php-sdk-v4",
-            "version": "5.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/facebook/facebook-php-sdk-v4.git",
-                "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/facebook/facebook-php-sdk-v4/zipball/c60fba1fe1de62db1e0776d32fc2fb778189459c",
-                "reference": "c60fba1fe1de62db1e0776d32fc2fb778189459c",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.4|^7.0"
-            },
-            "require-dev": {
-                "guzzlehttp/guzzle": "~5.0",
-                "mockery/mockery": "~0.8",
-                "phpunit/phpunit": "~4.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Facebook\\": "src/Facebook/"
-                },
-                "files": [
-                    "src/Facebook/polyfills.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Facebook Platform"
-            ],
-            "authors": [
-                {
-                    "name": "Facebook",
-                    "homepage": "https://github.com/facebook/facebook-php-sdk-v4/contributors"
-                }
-            ],
-            "description": "Facebook SDK for PHP",
-            "homepage": "https://github.com/facebook/facebook-php-sdk-v4",
-            "keywords": [
-                "facebook",
-                "sdk"
-            ],
-            "time": "2016-05-18 22:04:36"
-        },
-        {
-            "name": "klein/klein",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/klein/klein.php.git",
-                "reference": "5dc073f05adb67ee09680545b4cc7b0590d2559e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/klein/klein.php/zipball/5dc073f05adb67ee09680545b4cc7b0590d2559e",
-                "reference": "5dc073f05adb67ee09680545b4cc7b0590d2559e",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "phpunit/php-code-coverage": "1.2.x",
-                "phpunit/phpunit": "3.7.x",
-                "squizlabs/php_codesniffer": "1.4.8"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Klein\\": "src/Klein/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Chris O'Hara",
-                    "email": "cohara87@gmail.com",
-                    "homepage": "http://chris6f.com/",
-                    "role": "Creator/Developer"
-                },
-                {
-                    "name": "Trevor Suarez",
-                    "email": "rican7@gmail.com",
-                    "homepage": "http://about.me/tnsuarez",
-                    "role": "Contributor/Developer"
-                }
-            ],
-            "description": "A lightning fast router for PHP",
-            "homepage": "https://github.com/chriso/klein.php",
-            "keywords": [
-                "boilerplate",
-                "router",
-                "routing",
-                "sinatra"
-            ],
-            "time": "2014-11-07 07:35:23"
         },
         {
             "name": "nikic/fast-route",

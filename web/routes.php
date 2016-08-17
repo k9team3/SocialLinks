@@ -17,4 +17,5 @@ $app->post('/google/person/find','google:findPerson');
 $app->post('/google/person/information','google:getInformation');
 $app->post('/google/person/organization','google:getOrganizations');
 $app->post('/google/person/place','google:getPlaces');
+$app->post('/google/person/url','google:getUrls');
 

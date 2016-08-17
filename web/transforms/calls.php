@@ -16,6 +16,12 @@ class Calls{
     private $transform;
     private $request;
 
+    /**
+     * Calls constructor.
+     * @param MaltegoEntity $entity
+     * @param MaltegoTransform $transform
+     * @param Send $request
+     */
     public function __construct(MaltegoEntity $entity ,MaltegoTransform $transform,Send $request){
 
         $this->entity = $entity;
@@ -23,8 +29,11 @@ class Calls{
         $this->request = $request;
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function fgroup($url){
-
 
         $result = $this->request->response($url);
         $output= "";
@@ -35,7 +44,8 @@ class Calls{
 
         } else {
 
-            $this->entity->MaltegoEntity("michaelpoellath.FacebookGroup", $result->name);
+            $string = str_replace("&", "", $result->name);
+            $this->entity->MaltegoEntity("michaelpoellath.FacebookGroup",$string);
 
             $this->entity->setDisplayInformation("Click <a
                     href=\"https://www.facebook.com/" . $result->id . "\">here</a> to get more Information about the Group.\n" . "\n!!!DISCRIPTION:" . $result->description . "!!!");
@@ -49,6 +59,10 @@ class Calls{
         }
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function femail($url){
 
         $result = $this->request->response($url);
@@ -59,10 +73,8 @@ class Calls{
 
         } else {
 
-
             $this->entity->MaltegoEntity("maltego.EmailAddress", $result->email);
             $output .= $this->entity->returnEntity();
-
             return $this->output($output);
         }
     }
@@ -74,7 +86,6 @@ class Calls{
         if ($result->error != NULL) {
 
             return $this->exception("" . $result->error->message . " + " . $result->error->type);
-
 
         } else {
             foreach ($result->data as $item) {
@@ -115,11 +126,9 @@ class Calls{
                 $this->entity->addAdditionalFields("person.lastname", "Surname", false, $item->last_name);
                 $this->entity->addAdditionalFields("ID", "ID", false, $item->id);
                 $output.=$this->entity->returnEntity();
-
             }
 
             return $this->output($output);
-
         }
     }
 
@@ -128,12 +137,10 @@ class Calls{
         $output = "";
         $result = $this->request->response($url);
 
-
         if($result->error != NULL){
             return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
         }
         else{
-
 
             foreach($result->items as $item){
 
@@ -145,24 +152,21 @@ class Calls{
                 $string = str_replace("&", "",$item->displayName);
 
                 $this->entity->addAdditionalFields("name","Name",false,$string);
-
-
                 $output .=  $this->entity->returnEntity();
-
 
             }
             if($result->nextPageToken !=""){
 
                 $output.=$this->gpersonByName("https://www.googleapis.com/plus/v1/people?query=".$id."&pageToken=".$result->nextPageToken."&maxResults=50&key=".$key,$id,$key);
-
             }
-
-            return $output;
+            return $this->output($output);
         }
-
-
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function gpersonById($url){
 
         $result = $this->request->response($url);
@@ -175,14 +179,16 @@ class Calls{
 
             $this->entity->MaltegoEntity("michaelpoellath.GooglePerson",$result->etag);
             $this->entity->setDisplayInformation("Click <a
-                    href=\"".$result->url. "\">here</a> to get more Information about the Person.\n");
+                    href=\"".$result->url. "\">here</a> to get more Information about the Person.\n About Me:".$result->aboutMe."\n");
 
             $this->entity->setIconURL($result->image->url);
             $this->entity->addAdditionalFields("person.firstnames", "First Names", false, $result->name->givenName);
             $this->entity->addAdditionalFields("person.lastname", "Surname", false, $result->name->familyName);
             $this->entity->addAdditionalFields("gender","Gender",false,$result->gender);
             $this->entity->addAdditionalFields("id","ID",false,$result->id);
-            $this->entity->addAdditionalFields("displayname","Display Name",false,$result->displayName);
+
+            $string = str_replace("&", "",$result->displayName);
+            $this->entity->addAdditionalFields("displayname","Display Name",false,$string);
             $this->entity->addAdditionalFields("occupation","Occupation",false,$result->occupation);
             $this->entity->addAdditionalFields("circledByCount","Circled",false,intval($result->circledByCount));
             $output .= $this->entity->returnEntity();
@@ -191,6 +197,10 @@ class Calls{
         }
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function gorganizations($url){
 
         $result = $this->request->response($url);
@@ -218,58 +228,88 @@ class Calls{
                 $this->entity->addAdditionalFields("department","Department",false,$item->department);
                 $this->entity->addAdditionalFields("location","Location",false,$item->location);
                 $output .= $this->entity->returnEntity();
-
-
-
             }
 
-
             return $this->output($output);
-
         }
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function gplaces($url){
 
+        $result = $this->request->response($url);
+        $output ="";
 
+        if($result->error != NULL){
+            return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
+        }
+        else{
 
-            $result = $this->request->response($url);
-            $output ="";
+            foreach ($result->placesLived as $item) {
 
-            if($result->error != NULL){
-                return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
-            }
-            else{
+                $this->entity->MaltegoEntity("michaelpoellath.GooglePlaces",$item->value);
+                if($item->primary == false){
 
-                foreach ($result->placesLived as $item) {
+                    $this->entity->addAdditionalFields("primary","Primary",false,false);
 
-                    $this->entity->MaltegoEntity("michaelpoellath.GooglePlaces",$item->value);
-                    if($item->primary == false){
+                }else{
 
-                        $this->entity->addAdditionalFields("primary","Primary",false,false);
-                    }else{
-
-                        $this->entity->addAdditionalFields("primary","Primary",false,true);
-                    }
-
-                    $output .= $this->entity->returnEntity();
+                    $this->entity->addAdditionalFields("primary","Primary",false,true);
                 }
-
-                return $this->output($output);
-
+                $output .= $this->entity->returnEntity();
             }
+            return $this->output($output);
+        }
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
+    public function gurls($url){
+
+        $result = $this->request->response($url);
+        $output ="";
+
+        if($result->error != NULL){
+            return $this->exception("Error:".$result->error->code." with message ".$result->error->message);
+        }
+        else{
+
+            foreach($result->urls as $item){
+
+                $this->entity->MaltegoEntity("maltego.URL",$item->label);
+                $this->entity->setDisplayInformation("Click <a
+                    href=\"".$item->value. "\">here</a> to get more Information about the Website.");
+                $this->entity->addAdditionalFields("url","URL",false,$item->value);
+                $output.= $this->entity->returnEntity();
+
+            }
+            return $this->output($output);
+        }
+    }
+
+
+    /**
+     * @param $message
+     * @return string
+     */
     public function exception($message){
 
         $this->transform->addException($message);
-
         return $this->transform->throwExceptions();
     }
 
 
-    private function output($entities){
-        $output="";
+    /**
+     * @param $entities
+     * @return string
+     */
+    public function output($entities){
+
         $output = "<MaltegoMessage>\n";
         $output .= "<MaltegoTransformResponseMessage>\n";
         $output .="<Entities>\n";
@@ -284,13 +324,6 @@ class Calls{
         $output .= "</MaltegoMessage>\n";
         return $output;
     }
-
-
-
-
-
-
-
 }
 
 

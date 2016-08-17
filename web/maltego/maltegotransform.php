@@ -220,33 +220,9 @@ class MaltegoTransformInput
 	*/
 	function getEntity($request)
 	{
-		global $argc, $argv;
-//		if ($argv && $argv[1]) {
-//			return $this->populateEntityFromLocal();
-//		} else {
-			return $this->populateEntityFromXML($request);
-//		}
+		return $this->populateEntityFromXML($request);
 	}
 
-	/* Populate entity from Local (command line args)
-	 *
-	 */
-	private function populateEntityFromLocal()
-	{
-		global $argc, $argv;
-
-		// Leave at default Maltego.Phrase type.
-		$this->value = (string)$argv[1];
-		if ($argv[2]) {
-			parse_str(implode('&',explode("#", $argv[2])), $aFs_input);
-			$aFs = array();
-			foreach($aFs_input as $key => $val) {
-				$aFs[(string)$key] = (string)$val;
-			}
-			$this->additionalFields = $aFs;
-		}
-		return true;
-	}
 
 
 	/* Populate entity from XML input (e.g. via TDS)
@@ -254,16 +230,6 @@ class MaltegoTransformInput
 	 */
 	private function populateEntityFromXML($entXML)
 	{
-//		$xml = "No XML";
-//		$xmlPost = $request;//file_get_contents('php://input');
-//		if($xmlPost)
-//		{
-//			$xml = $xmlPost;
-//		}
-//		try
-//		{
-			//$entXML = $reques;//@new SimpleXMLElement($xml);
-			$entities = array();
 			if (!empty($entXML))
 			{
 
@@ -297,13 +263,6 @@ class MaltegoTransformInput
 				return true;
 			}
 		return false;
-
-//		}
-//		catch (Exception $e)
-//		{
-//			return false;
-//		}
-//		return false;
 
 	}
 }

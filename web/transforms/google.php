@@ -17,108 +17,116 @@ class Google{
     private $calls;
     private $input;
     private $config;
+    private $link = "https://www.googleapis.com/plus/v1/people";
+    private $invalid = "No Valid Input!";
 
+    /**
+     * Google constructor.
+     * @param Calls $calls
+     * @param MaltegoTransformInput $input
+     * @param Config $config
+     */
     public function __construct(Calls $calls, MaltegoTransformInput $input, Config $config)
     {
         $this->calls  = $calls;
         $this->input  = $input;
         $this->config = $config;
-
     }
 
-
-    public function findPerson(Request $request,$response){
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function findPerson(Request $request){
 
         if($this->input->getEntity($request->getParsedBody())) {
 
             $value = $this->input->transformFields['GooglePoPUp'];
             if(ctype_digit($value)){
-
                 //do the find person
-                return $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/".$value."?key=".$this->config->getGooglekey());
-
+                return $this->calls->gpersonById($this->link."/".$value."?key=".$this->config->getGooglekey());
             }
             else{
-
-                    //do the search all names
-                    $value = str_replace(" ","+",$value);
-                    $result = $this->calls->gpersonByName("https://www.googleapis.com/plus/v1/people?query=".$value."&maxResults=50&key=".$this->config->getGooglekey(),$value,$this->config->getGooglekey());
-
-                    $output = "<MaltegoMessage>\n";
-                    $output .= "<MaltegoTransformResponseMessage>\n";
-                    $output .="<Entities>\n";
-                    $output .=  $result;
-                    $output .="</Entities>\n";
-
-                    $output .="<UIMessages>\n";
-                    $output .="</UIMessages>\n";
-
-                    $output .= "</MaltegoTransformResponseMessage>\n";
-                    $output .= "</MaltegoMessage>\n";
-
-                    return $output;
-                }
-
+                //do the search all names
+                $value = str_replace(" ","+",$value);
+                return $this->calls->gpersonByName($this->link."?query=".$value."&maxResults=50&key=".$this->config->getGooglekey(),$value,$this->config->getGooglekey());
             }
-            else{
-
-              return  $this->calls->exception("NO Valid Input");
-            }
+        } else{
+            return $this->calls->exception($this->invalid);
         }
+    }
 
-    public function getInformation(Request $request,$response){
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function getInformation(Request $request){
 
-            if ($this->input->getEntity($request->getParsedBody())) {
+        if ($this->input->getEntity($request->getParsedBody())) {
 
-                $value = $this->input->additionalFields;
-                $id = $value['id'];
+            $value = $this->input->additionalFields;
+            $id = $value['id'];
 
-                return $this->calls->gpersonById("https://www.googleapis.com/plus/v1/people/" . $id . "?key=" . $this->config->getGooglekey());
-
-            }
-            else{
-
-                return  $this->calls->exception("NO Valid Input");
-            }
+            return $this->calls->gpersonById($this->link."/" . $id . "?key=" . $this->config->getGooglekey());
         }
-
-    public function getOrganizations(Request $request,$response){
-
-            if ($this->input->getEntity($request->getParsedBody())) {
-
-                $value = $this->input->additionalFields;
-                $id = $value['id'];
-
-                return $this->calls->gorganizations("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
-
-
-            }else{
-
-                return $this->calls->exception("NO Valid Input");
-
-            }
-
-
+        else {
+            return  $this->calls->exception($this->invalid);
         }
+    }
 
-    public function getPlaces(Request $request,$response){
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function getOrganizations(Request $request){
 
-            $input = new MaltegoTransformInput();
+        if ($this->input->getEntity($request->getParsedBody())) {
 
-            if ($input->getEntity($request->getParsedBody())) {
+            $value = $this->input->additionalFields;
+            $id = $value['id'];
 
-                $value = $input->additionalFields;
-                $id = $value['id'];
+            return $this->calls->gorganizations($this->link."/".$id."?key=".$this->config->getGooglekey());
 
-                return $this->calls->gplaces("https://www.googleapis.com/plus/v1/people/".$id."?key=".$this->config->getGooglekey());
-
-
-            }else{
-                return $this->calls->exception("NO Valid Input");
-            }
+        }else{
+            return $this->calls->exception($this->invalid);
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function getPlaces(Request $request){
+
+        if ($this->input->getEntity($request->getParsedBody())) {
+
+            $value = $this->input->additionalFields;
+            $id = $value['id'];
+
+            return $this->calls->gplaces($this->link."/".$id."?key=".$this->config->getGooglekey());
 
 
+        }else{
+            return $this->calls->exception($this->invalid);
+        }
+    }
 
+    /**
+     * @param Request $request
+     * @return string
+     */
+    public function getUrls(Request $request){
+
+        if($this->input->getEntity($request->getParsedBody())){
+
+            $value = $this->input->additionalFields;
+            $id = $value['id'];
+
+            return $this->calls->gurls($this->link."/".$id."?key=".$this->config->getGooglekey());
+
+        }else{
+            return $this->calls->exception($this->invalid);
+        }
+    }
 }
 

@@ -22,7 +22,6 @@ $container['entity'] = function($c){
 
     return new \mpoellath\sociallinks\maltego\MaltegoEntity();
 };
-
 $container['transform'] = function($c){
 
     return new \mpoellath\sociallinks\maltego\MaltegoTransform();

@@ -13,17 +13,26 @@ namespace mpoellath\sociallinks\config;
 class Config{
 
 
-    var $facebookkey = "access_token=";
-    var $googlekey = "";
+    var $facebookkey = "enter your key";
+    var $googlekey = "enter your key";
 
 
+    /**
+     * @return string
+     */
     public function getAccessToken()
     {
         return $this->facebookkey;
     }
 
+    /**
+     * @return string
+     */
     public function getGooglekey()
     {
         return $this->googlekey;
     }
+
+
 }
+
