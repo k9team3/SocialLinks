@@ -159,7 +159,7 @@ class Calls{
 
                 $output.=$this->gpersonByName("https://www.googleapis.com/plus/v1/people?query=".$id."&pageToken=".$result->nextPageToken."&maxResults=50&key=".$key,$id,$key);
             }
-            return $this->output($output);
+            return $output;
         }
     }
 

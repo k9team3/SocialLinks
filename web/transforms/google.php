@@ -49,8 +49,21 @@ class Google{
             else{
                 //do the search all names
                 $value = str_replace(" ","+",$value);
-                return $this->calls->gpersonByName($this->link."?query=".$value."&maxResults=50&key=".$this->config->getGooglekey(),$value,$this->config->getGooglekey());
-            }
+                $result = $this->calls->gpersonByName($this->link."?query=".$value."&maxResults=50&key=".$this->config->getGooglekey(),$value,$this->config->getGooglekey());
+				$output = "<MaltegoMessage>\n";
+                $output .= "<MaltegoTransformResponseMessage>\n";
+                $output .="<Entities>\n";
+                $output .=  $result;
+                $output .="</Entities>\n";
+
+                $output .="<UIMessages>\n";
+                $output .="</UIMessages>\n";
+
+                $output .= "</MaltegoTransformResponseMessage>\n";
+                $output .= "</MaltegoMessage>\n";
+
+                return $output;
+			}
         } else{
             return $this->calls->exception($this->invalid);
         }
